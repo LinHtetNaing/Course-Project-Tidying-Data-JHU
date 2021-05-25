@@ -41,16 +41,23 @@ The dataset includes the following files:
 
 - 'mean_values.txt': Contains mean values of each variable for each subject and each measurement
 
-- 'mean_and_std_of_measurements.txt': Contains mean and standard deviations of measurements of the 
-				    experiment
 - 'run_analysis.R': contains script for loading and tidying data as par course project's requirements. A brief comment of the code used are described in the script as well.
 
 
 
-
-"mean_and_std_of_measurements.txt" file combine test and train datasets of original data according to 'Activity'. However, the file only includes mean and standard deviations of each measurement. 
-
 "mean_values.txt" file includes mean values of each variable for each subject and each measurement. 
+
+For analysis, 
+ - required datasets (X_test, y_test, subject_test, X_train, y_train, subject_train, features, activity_lables) were loaded first. 
+ - Processing data for test was performed: extract only mean and std from variables using grepl(). Activity labels were made readable by omitting "_" and changing all to lowercases using gsub() and tolower().
+ - Processing data for train was performed similarly.
+ - Binding of test data (subject_test, y_test, X_test) was done using cbind() function.
+ - Binding of train data (subject_train, y_train, X_train) was done similarly.
+ - Then the test and train data were merged using rbind() function.
+ - The data "mean_and_std_of_measurements" was produced as txt file but not uploaded in the repo as it is not required.
+ - The merged data was group_by according to activity labels and subject ID. 
+ - Mean values for each varaible for each subject and measurement was produced using summarize() and across() functions.
+ - Finally, the tidy data set as par requirements of the course project was written and produced. The dataset was named as "mean_values.txt".
 
 
 
